@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} User Detail Page {% endblock %}
+
+{% block content %} 
+
+<div>
+    <img src="{{ user.image_url }}" alt="User Image">
+</div>
+<div>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+</div>
+<div>
+    <btn><a href="/users/{{ user.id }}/edit">Edit</a></btn>
+    <btn><a href="/users/{{ user.id }}/delete">Delete</a></btn>
+</div>
+
+
+{% endblock %}
