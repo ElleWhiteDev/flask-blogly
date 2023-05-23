@@ -15,6 +15,6 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = (db.Text, nullable=False)
-    last_name = (db.Text, nullable=False)
-    img_url = (db.Text, default="https://play-lh.googleusercontent.com/W1Rz_g5pu2i07INW9uqiD-Tj30e_F8HppnuE41WFfXWlKXzPDCL6_B52sJ2sCONkrA=w240-h480-rw")
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
+    img_url = db.Column(db.String, default="https://source.unsplash.com/200x200/?avatar")

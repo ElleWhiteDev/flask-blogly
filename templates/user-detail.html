@@ -4,16 +4,19 @@
 
 {% block content %} 
 
-<div>
-    <img src="{{ user.image_url }}" alt="User Image">
+<div class="user-profile">
+    <div class="user-image">
+        <img src="{{ user.image_url }}" alt="User Image">
+    </div>
+    <div class="user-details">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <div class="user-actions">
+            <a class="btn btn-primary" href="/users/{{user.id}}/edit">Edit</a>
+            <form style="display: inline;" method="POST" action="/users/{{user.id}}/delete">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
 </div>
-<div>
-    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-</div>
-<div>
-    <btn><a href="/users/{{ user.id }}/edit">Edit</a></btn>
-    <btn><a href="/users/{{ user.id }}/delete">Delete</a></btn>
-</div>
-
 
 {% endblock %}

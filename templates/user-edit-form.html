@@ -2,24 +2,23 @@
 
 {% block title %} User Edit Page {% endblock %}
 
-
 {% block content %} 
 
 <h1> Edit a user </h1>
-<form class="edit-user-form">
+<form class="edit-user-form" method="POST" action="/users/{{ user.id }}/edit">
     <label for="first-name">First name</label>
-    <input type="text" id="first-name" name="first-name" placeholder="{{ user.first_name }}" required>
+    <input type="text" id="first-name" name="first_name" value="{{ user.first_name }}" required>
 
     <label for="last-name">Last name</label>
-    <input type="text" id="last-name" name="last-name" placeholder="{{ user.last_name }}" required>
+    <input type="text" id="last-name" name="last_name" value="{{ user.last_name }}" required>
 
     <label for="image-url">Image URL</label>
-    <input type="text" id="image-url" name="image-url" placeholder="{{ user.image_url }}" required>
+    <input type="text" id="image-url" name="image_url" value="{{ user.image_url }}">
 
-    <button type="submit">Save</button>
-    <button type="submit">Cancel</button>
-    
+    <div class="btn-conatiner">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-danger" href="/users">Cancel</a>
+    </div>
 </form>
-
 
 {% endblock %}
