@@ -17,4 +17,4 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
-    img_url = db.Column(db.String, default="https://source.unsplash.com/200x200/?avatar")
+    img_url = db.Column(db.String, default="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg")

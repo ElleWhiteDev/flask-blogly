@@ -65,6 +65,8 @@ def edit_user(user_id):
         user.first_name = request.form["first_name"].strip().capitalize()
         user.last_name = request.form["last_name"].strip().capitalize()
         user.img_url = (request.form.get("image_url") or "").strip()
+
+        print(user)
         
         try:
             db.session.commit()
@@ -75,6 +77,9 @@ def edit_user(user_id):
         return redirect("/users")
 
     elif request.method == "GET":
+        print("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
+        print(user.img_url)
+
         return render_template("user-edit-form.html", user=user)
 
 
