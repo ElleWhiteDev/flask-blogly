@@ -4,15 +4,13 @@
 
 
 {% block content %}
-
-<h1>{{post.title}}</h1>
-
-<p>{{post.content}}</p>
-
-<p class="post-author">By {{user.first_name}} {{user.last_name}}</p>
-
+<div class="post-container">
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <p class="post-author">By <a class="post-link" href="/users/{{post.user.id}}">{{user.first_name}} {{user.last_name}}</a> {{ post.formatted_created_at() }}</p>
+</div>
 <div class="btn-conatiner">
-    <a class="btn btn-info" href="/users/{{user.id}}">Cancel</a>
+    <a class="btn btn-info" href="/">Cancel</a>
     <a class="btn btn-primary" href="/posts/{{post.id}}/edit">Edit</a>
     <form style="display: inline;" method="POST" action="/posts/{{post.id}}/delete">
         <button type="submit" class="btn btn-danger">Delete</button>

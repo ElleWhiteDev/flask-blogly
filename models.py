@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
+from datetime import datetime
 
 
 db = SQLAlchemy()
@@ -21,7 +22,7 @@ class User(db.Model):
     last_name = db.Column(db.String(20), nullable=False)
     img_url = db.Column(db.String, default="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg")
 
-    posts = db.relationship("Post", backref='user', cascade="all, delete-orphan")
+    posts = db.relationship("Post", cascade="all, delete", backref=db.backref("user"))
 
     __table_args__ = (UniqueConstraint('first_name', 'last_name', name='unique_full_name'),)
 
@@ -37,8 +38,11 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False, unique=True)
     content = db.Column(db.String(500), nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     def __repr__(self):
         return f"<Post {self.id} | {self.title} | {self.content} | {self.created_at} | {self.user_id}>"
+    
+    def formatted_created_at(self):
+        return self.created_at.strftime("%B %d, %Y, %I:%M %p")

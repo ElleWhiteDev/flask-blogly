@@ -15,7 +15,7 @@
             <form style="display: inline;" method="POST" action="/users/{{user.id}}/delete">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-             <a class="btn btn-info" href="/users">Cancel</a>
+             <a class="btn btn-info" href="/">Cancel</a>
         </div>
         <div class="user-posts">
             <h2>Posts</h2>
@@ -23,7 +23,7 @@
                 {% if posts %}
                     {% for post in posts %}
                     <li>
-                        <a href="/posts/{{post.id}}">{{post.title}}</a>
+                        <a class="post-link" href="/posts/{{post.id}}">{{post.title}}</a>
                     </li>
                     {% endfor %}
                 {% else %}
