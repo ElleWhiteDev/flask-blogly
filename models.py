@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import UniqueConstraint
+
 
 db = SQLAlchemy()
 
@@ -15,6 +17,28 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = db.Column(db.String, nullable=False)
-    last_name = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
     img_url = db.Column(db.String, default="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg")
+
+    posts = db.relationship("Post", backref='user', cascade="all, delete-orphan")
+
+    __table_args__ = (UniqueConstraint('first_name', 'last_name', name='unique_full_name'),)
+
+    def __repr__(self):
+        return f"<User {self.id} | {self.first_name} {self.last_name} |{self.img_url}>"
+
+
+class Post(db.Model):
+    """User post model"""
+
+    __tablename__ = "posts"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False, unique=True)
+    content = db.Column(db.String(500), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def __repr__(self):
+        return f"<Post {self.id} | {self.title} | {self.content} | {self.created_at} | {self.user_id}>"

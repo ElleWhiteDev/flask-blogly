@@ -13,7 +13,7 @@
     {% if messages %}
     <section class="messages">
         {% for category,msg in messages %}
-        <p class='{{category}}'>{{ msg }}</p>
+        <p class='flash {{category}}'>{{ msg }}</p>
         {% endfor %}
     </section>
     {% endif %}

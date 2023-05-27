@@ -32,6 +32,30 @@ body {
   background-color: #a71d26;
 }
 
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #fff;
+}
+
+.btn-info {
+    background-color: #20c997;
+    border-color: #20c997;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #17a2b8;
+    border-color: #138496;
+    color: #fff;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -69,4 +93,20 @@ form .btn-container > button.btn-primary {
 
 .user-actions {
   margin-top: 10px;
+}
+
+.flash.success {
+  background-color: lightgreen;
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.flash.error {
+  background-color: salmon;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
