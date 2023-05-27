@@ -60,10 +60,14 @@ def add_user():
 @app.route("/users/<int:user_id>")
 def user_details(user_id):
     """User detail page"""
-    user = User.query.get_or_404(user_id)
-    posts = Post.query.filter_by(user_id=user_id).all()
+    user = User.query.get(user_id)
 
-    return render_template("user-detail.html", user=user, posts=posts)
+    if user is not None:
+        posts = user.posts
+        return render_template("user-detail.html", user=user, posts=posts)
+    else:
+        flash("Invalid user", "error")
+        return redirect("/")
 
 
 @app.route("/users/<int:user_id>/edit", methods=["GET", "POST"])
@@ -129,12 +133,15 @@ def post_form(user_id):
 @app.route("/posts/<int:post_id>")
 def show_post(post_id):
     """View individual post"""
-    post = Post.query.get_or_404(post_id)
-    user = post.user
-    user_id = post.user_id
+    post = Post.query.get(post_id)
 
-    return render_template("show-post.html", post=post, user=user, user_id=user_id)
-
+    if post:
+        user = post.user
+        user_id = post.user_id
+        return render_template("show-post.html", post=post, user=user, user_id=user_id)
+    else:
+        flash("Post unavailable", "error")
+        return redirect("/")
 
 @app.route("/posts/<int:post_id>/edit", methods=["GET", "POST"])
 def edit_post(post_id):
