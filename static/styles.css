@@ -76,6 +76,7 @@ form input:focus {
 form .btn-container {
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
 form .btn-container > button.btn-primary {
@@ -90,6 +91,12 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.badge-primary {
+  font-weight: bold;
+  background-color: #007bff;
+  color: #fff;
 }
 
 .post-link {

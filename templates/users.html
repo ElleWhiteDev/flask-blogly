@@ -10,7 +10,7 @@
         <li><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></li>
     {% endfor %}
 </ul>
-<a class="btn btn-primary" href="/users/new">Add user</a>
-<a class="btn btn-info" href="/">Cancel</a>
+<button class="btn btn-primary" onclick="window.location.href='/users/new'">Add user</button>
+<button class="btn btn-info" onclick="window.location.href='/'">Cancel</button>
 
 {% endblock %}

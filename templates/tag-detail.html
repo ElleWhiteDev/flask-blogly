@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Tag Detail Page {% endblock %}
+
+{% block content %} 
+    <h1>{{tag.name}}</h1>
+    <h2>Posts</h2>
+    <ul>
+        {% for post in tag.posts %}
+            <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="btn-conatiner">
+        <button class="btn btn-primary" onclick="window.location.href='/tags/{{tag.id}}/edit'">Edit</button>
+        <button class="btn btn-danger" onclick="window.location.href='/tags/{{tag.id}}/delete'">Delete</button>
+        <button class="btn btn-info" onclick="window.location.href='/tags'">Cancel</button>
+    </div>
+{% endblock %}

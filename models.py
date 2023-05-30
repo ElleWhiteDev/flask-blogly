@@ -31,7 +31,7 @@ class User(db.Model):
 
 
 class Post(db.Model):
-    """User post model"""
+    """Post model"""
 
     __tablename__ = "posts"
 
@@ -41,8 +41,34 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+    tags = db.relationship("Tag", secondary="post_tags", backref="posts")
+
     def __repr__(self):
         return f"<Post {self.id} | {self.title} | {self.content} | {self.created_at} | {self.user_id}>"
     
     def formatted_created_at(self):
         return self.created_at.strftime("%B %d, %Y, %I:%M %p")
+    
+
+class Tag(db.Model):
+    """Tag model"""
+
+    __tablename__ = "tags"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(25), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"<Tag {self.id} {self.name}>"
+    
+
+class PostTag(db.Model):
+    """Tags on posts model"""
+
+    __tablename__ = "post_tags"
+
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
+
+    def __repr__(self):
+        return f"<PostTag {self.post_id} {self.tag_id}>"

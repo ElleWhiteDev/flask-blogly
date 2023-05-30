@@ -12,9 +12,16 @@
     <label for="content">Content</label>
     <input type="text" id="content" name="content" value="{{ post.content }}" required>
 
+    {% for tag in tags %}
+        <div>
+            <input type="radio" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}">
+            <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+        </div>
+    {% endfor %}
+
     <div class="btn-conatiner">
         <button class="btn btn-success" type="submit">Edit</button>
-        <a class="btn btn-info" href="/users/<int:user_id>">Cancel</a>
+        <button class="btn btn-info" onclick="window.location.href='/users/{{user_id}}'">Cancel</button>
     </div>
 </form>
 

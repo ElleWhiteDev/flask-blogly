@@ -11,11 +11,11 @@
     <div class="user-details">
         <h1>{{ user.first_name }} {{ user.last_name }}</h1>
         <div class="user-actions">
-            <a class="btn btn-primary" href="/users/{{user.id}}/edit">Edit</a>
+            <button class="btn btn-primary" onclick="window.location.href='/users/{{user.id}}/edit'">Edit</button>
             <form style="display: inline;" method="POST" action="/users/{{user.id}}/delete">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-             <a class="btn btn-info" href="/">Cancel</a>
+             <button class="btn btn-info" onclick="window.location.href='/'">Cancel</button>
         </div>
         <div class="user-posts">
             <h2>Posts</h2>
@@ -31,7 +31,7 @@
                 {% endif %}
             </ul>
             <div class="btn-conatiner">
-                <a class="btn btn-primary" href="/users/{{user.id}}/posts/new">Add Post</a>
+                <button class="btn btn-primary" onclick="window.location.href='/users/{{user.id}}/posts/new'">Add Post</button>
             </div>
         </div>
     </div>
