@@ -103,6 +103,11 @@ a:hover {
   font-size: smaller;
   border-radius: 5px;
   padding: 5px 5px;
+  text-decoration: none;
+}
+
+.badge:hover {
+  text-decoration: none;
 }
 
 .post-link {

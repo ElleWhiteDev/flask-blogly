@@ -244,7 +244,7 @@ def edit_tag(tag_id):
         return render_template("edit-tag-form.html", tag=tag)
 
 
-@app.route("/tags/<int:tag_id>/delete", methods=["POST"])
+@app.route("/tags/<int:tag_id>/delete", methods=["GET","POST"])
 def delete_tag(tag_id):
     """Delete tag"""
     tag = Tag.query.get(tag_id)
