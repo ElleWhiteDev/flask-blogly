@@ -93,8 +93,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.blue-link{
+  color: #007bff;
+}
+
 .badge-primary {
-  font-weight: bold;
   background-color: #007bff;
   color: #fff;
 }

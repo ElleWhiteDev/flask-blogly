@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1>Edit Post</h1>
-<form class="edit-post-form" method="POST" action="/posts/edit">
+<form class="edit-post-form" method="POST" action="/posts/{{ post.id }}/edit">
 
     <label for="title">Title</label>
     <input type="text" id="title" name="title" value="{{ post.title }}" required>
@@ -14,14 +14,14 @@
 
     {% for tag in tags %}
         <div>
-            <input type="radio" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}">
+            <input type="checkbox" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}">
             <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
         </div>
     {% endfor %}
 
     <div class="btn-conatiner">
         <button class="btn btn-success" type="submit">Edit</button>
-        <button class="btn btn-info" onclick="window.location.href='/users/{{user_id}}'">Cancel</button>
+        <button class="btn btn-info" onclick="window.location.href='/posts/{{ post.id }}'">Cancel</button>
     </div>
 </form>
 

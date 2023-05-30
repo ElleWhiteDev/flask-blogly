@@ -145,23 +145,17 @@ def show_post(post_id):
         flash("Post unavailable", "error")
         return redirect("/")
 
+
 @app.route("/posts/<int:post_id>/edit", methods=["GET", "POST"])
 def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
-    tags = Tags.query.all()
+    tags = Tag.query.all()
 
     if request.method == "POST":
-        selected_tags = request.form.getlist("tags")
-        post.tags.clear()
-        for tag_id in selected_tags:
-            tag = Tag.query.get(tag_id)
-            post.tags.append(tag)
-            if tag:
-                post.tags.append(tag)
-
         post.title = request.form["title"].strip()
         post.content = request.form["content"]
-        
+        post.tags = [Tag.query.get(int(tag)) for tag in request.form.getlist("tags")]
+
         try:
             db.session.commit()
             flash("Edits Saved", "success")
@@ -170,8 +164,7 @@ def edit_post(post_id):
             db.session.rollback()
             flash("Unable to update post at this time", "error")
 
-        return redirect("/posts/<int:post_id>", post=post)
-
+        return redirect(url_for('user_details', user_id=post.user.id))
     elif request.method == "GET":
         return render_template("edit-post-form.html", post=post, tags=tags)
 

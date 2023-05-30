@@ -13,10 +13,10 @@
     <input type="text" id="content" name="content" required>
 
     {% for tag in tags %}
-    <div>
-        <input type="radio" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}">
-        <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
-    </div>
+        <div>
+            <input type="checkbox" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}">
+            <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+        </div>
     {% endfor %}
 
     <div class="btn-conatiner">
